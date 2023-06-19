@@ -6,7 +6,7 @@ public class MenuControllerScript : MonoBehaviour
 {
     public Canvas[] Canvases;
     List<string> CanvasesNames;
-    // Start is called before the first frame update
+
     void Start()
     {
         CanvasesNames = new List<string> { "MenuCanvas", "SettingsCanvas", "ThemesCanvas" };

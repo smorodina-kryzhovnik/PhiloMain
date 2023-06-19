@@ -26,6 +26,7 @@ public class MusicManager : MonoBehaviour
         else
             Destroy(this.gameObject);
     }
+
     void Start()
     {
         audiosource = GetComponent<AudioSource>();
@@ -46,6 +47,7 @@ public class MusicManager : MonoBehaviour
         if (tracksPlayed == tracks.Length)
             ResetShuffle();
     }
+
     public void ChangeTrack(int trackNumber)
     {
         if (!beenPlayed[trackNumber])
@@ -59,6 +61,7 @@ public class MusicManager : MonoBehaviour
         else
             audiosource.Stop();
     }
+
     void ResetShuffle()
     {
         tracksPlayed = 0;

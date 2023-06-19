@@ -49,10 +49,6 @@ public class QuestionControllerScript : MonoBehaviour
         ShuffleQuestions(questionsList, rng);
     }
 
-    void Update()
-    {
-        
-    }
     void ShuffleQuestions(List<Question> questionList, System.Random rng)
     {
         questionList.Shuffle(rng);
@@ -61,6 +57,7 @@ public class QuestionControllerScript : MonoBehaviour
             question.Answers.Shuffle(rng);
         }
     }
+
     public void NextButtonAction()
     {
         switch (TimesClicked)
@@ -96,25 +93,30 @@ public class QuestionControllerScript : MonoBehaviour
                 break;
         }
     }
+
     public void LoadSceneByName(string name)
     {
         SceneManager.LoadScene(name);
     }
+
     public void ResetGameplay()
     {
         Score = 0;
         CurrentQuestion = 0;
     }
+
     void LockAnswerButtons(bool state)
     {
         UnclickablePanel.SetActive(state);
     }
+
     void ResetAnswerButtons(Transform[] buttons)
     {
         for (int i = 0; i < buttonsState.Length; i++)
         {
             buttonsState[i] = false;
         }
+
         foreach (var button in buttons)
         {
             var selected = button.Find("Selected");
@@ -125,11 +127,13 @@ public class QuestionControllerScript : MonoBehaviour
             incorrect.gameObject.SetActive(false);
         }
     }
+
     public void SubmitAnswer()
     {
         if (CheckAnswer())
             Score++;
         var question = questionsList[CurrentQuestion];
+
         for (int i = 0; i < question.Answers.Count; i++)
         {
             var button = GameObject.Find("Button" + (i+1).ToString());
@@ -146,34 +150,41 @@ public class QuestionControllerScript : MonoBehaviour
         }
         TimesClicked++;
     }
+
     public bool CheckAnswer()
     {
         var question = questionsList[CurrentQuestion];
         var receivedAnswers = new List<string>();
+
         for(int i = 0; i < buttonsState.Length; i++)
             if (buttonsState[i])
                 receivedAnswers.Add(question.Answers[i]);
         if (receivedAnswers.Count != question.RightAnswers.Count)
             return false;
+
         for (int i = 0; i < receivedAnswers.Count; i++)
             if (receivedAnswers[i] != question.RightAnswers[i])
                 return false;
         return true;
     }
+
     public void SelectCurrentButton()
     {
         var buttonName = EventSystem.current.currentSelectedGameObject.name;
         SelectButton(GameObject.Find(buttonName).transform);
         var buttonNumber = buttonName[buttonName.Length-1] - '0' - 1;
+
         if (buttonsState[buttonNumber] == false)
             buttonsState[buttonNumber] = true;
         else
             buttonsState[buttonNumber] = false;
     }
+
     void SelectButton(Transform button)
     {
         var panel = button.Find("Selected").gameObject;
         bool selected = panel.activeSelf;
+
         if (!selected)
             panel.SetActive(true);
         else

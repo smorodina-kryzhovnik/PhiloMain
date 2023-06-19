@@ -18,9 +18,11 @@ public class Question
         //foreach (var line in lines)
             //Debug.Log(line);
         this.Text = lines[0];
+
         for (var answerCounter = 1; answerCounter < lines.Length; answerCounter++)
         {
             var answer = lines[answerCounter];
+
             if (answer[answer.Length - 1] == '*')
             {
                 var trimmedAnswer = answer.TrimEnd('*');
@@ -43,9 +45,11 @@ public class Question
         return result;
     }
 }
+
 public class QuestionList
 {
     public List<Question> list = new List<Question>();
+
     public QuestionList(string input)
     {
         var list = input.Split('=');
@@ -56,11 +60,13 @@ public class QuestionList
         }
     }
 }
+
 static class Extensions
 {
     public static void Shuffle<T>(this IList<T> list, System.Random rng)
     {
         int n = list.Count;
+
         while (n > 1)
         {
             n--;

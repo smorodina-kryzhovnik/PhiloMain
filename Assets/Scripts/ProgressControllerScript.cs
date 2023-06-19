@@ -12,6 +12,7 @@ public class ProgressControllerScript : MonoBehaviour
     [SerializeField] TMP_Text output;
     StringBuilder text;
     float[] records;
+
     void Start()
     {
         themes = new List<string> {"Culture", "Ontology", "Anthropology", "Gnoseology", "Science", "Law"};
@@ -20,10 +21,6 @@ public class ProgressControllerScript : MonoBehaviour
         LoadRecords();
     }
 
-    void Update()
-    {
-        
-    }
     public void LoadRecords()
     {
         text = new StringBuilder();
@@ -38,6 +35,7 @@ public class ProgressControllerScript : MonoBehaviour
             output.text = text.ToString();
         }
     }
+
     public void DeleteRecords()
     {
         PlayerPrefs.DeleteAll();
